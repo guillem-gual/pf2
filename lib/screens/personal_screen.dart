@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PersonalScreen extends StatelessWidget {
-  static var persona = Persona(name: 'Guillem Gual', email: 'guillemgual@example.com', dateOfBirth: DateTime.now());
+  static var persona = Persona(name: 'Guillem Gual', email: 'guillemgual@example.com', dateOfBirth: '26/06/2000');
 
 
   const PersonalScreen({super.key});
