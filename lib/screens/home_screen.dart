@@ -10,21 +10,26 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('DevProfile M3'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(PersonalScreen.persona.name), 
-            Text(PersonalScreen.persona.email),
-            Text(PersonalScreen.persona.dateOfBirth.toString()),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const PersonalScreen()));
-              },
-              child: const Text('Edit Profile'),
+      body: Column(
+        mainAxisAlignment: .center,
+        children: [
+          Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(PersonalScreen.persona.name), 
+                Text(PersonalScreen.persona.email),
+                Text(PersonalScreen.persona.dateOfBirth.toString()),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const PersonalScreen()));
+                  },
+                  child: const Text('Edit Profile'),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
