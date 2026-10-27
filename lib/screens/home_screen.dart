@@ -11,7 +11,7 @@ class HomeScreen extends StatelessWidget {
         title: const Text('DevProfile M3'),
       ),
       body: Column(
-        mainAxisAlignment: .center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
             child: Column(

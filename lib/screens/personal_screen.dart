@@ -13,7 +13,7 @@ class PersonalScreen extends StatelessWidget {
         title: Text('${PersonalScreen.persona.name.split(" ")[1]} - Edit Profile'),
         centerTitle: true,
       ),
-      body: Center(
+      body: Form(
         child: Column(
           spacing: 10.0,
           children: [
@@ -26,11 +26,13 @@ class PersonalScreen extends StatelessWidget {
               decoration: const InputDecoration(
                 labelText: 'Email',
               ),
+              keyboardType: TextInputType.emailAddress,
             ),
             TextFormField(
               decoration: const InputDecoration(
                 labelText: 'Date of Birth',
               ),
+              keyboardType: TextInputType.datetime,
             ),
           ],
         ),
