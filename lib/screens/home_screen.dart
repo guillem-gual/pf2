@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pf2/screens/personal_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -13,9 +14,9 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text(Persona.fullName),
-            const Text(Persona.email),
-            const Text(Persona.dateOfBirth),
+            Text(PersonalScreen.persona.name),
+            Text(PersonalScreen.persona.email),
+            Text(PersonalScreen.persona.dateOfBirth.toString()),
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/personal_screen.dart');
