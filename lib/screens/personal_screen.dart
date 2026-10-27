@@ -10,10 +10,12 @@ class PersonalScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('${PersonalScreen.persona.name} - Edit Profile'),
+        title: Text('${PersonalScreen.persona.name.split(" ")[1]} - Edit Profile'),
+        centerTitle: true,
       ),
       body: Center(
         child: Column(
+          spacing: 10.0,
           children: [
             TextFormField(
               decoration: const InputDecoration(
@@ -32,7 +34,8 @@ class PersonalScreen extends StatelessWidget {
             ),
           ],
         ),
-    ));
+      )
+    );
   }
 }
 
