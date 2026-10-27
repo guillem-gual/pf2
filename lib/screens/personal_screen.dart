@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class PersonalScreen extends StatelessWidget {
-  const PersonalScreen({super.key});
+  static var persona = Persona(name: 'Guillem Gual', email: 'guillemgual@example.com', dateOfBirth: DateTime.now());
 
-  static get persona => null;
+
+  const PersonalScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,17 +12,34 @@ class PersonalScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('${PersonalScreen.persona.name} - Edit Profile'),
       ),
-      body: const Center(
-        child: Text('This is the personal screen.'),
-      ),
-    );
+      body: Center(
+        child: Column(
+          children: [
+            TextFormField(
+              decoration: const InputDecoration(
+                labelText: 'Name',
+              ),
+            ),
+            TextFormField(
+              decoration: const InputDecoration(
+                labelText: 'Email',
+              ),
+            ),
+            TextFormField(
+              decoration: const InputDecoration(
+                labelText: 'Date of Birth',
+              ),
+            ),
+          ],
+        ),
+    ));
   }
 }
 
 class Persona {
-  String name;
-  String email;
-  DateTime dateOfBirth;
+  String name = 'Guillem Gual';
+  String email = 'guillemgual@example.com';
+  DateTime dateOfBirth = DateTime.now();
 
   Persona({required this.name, required this.email, required this.dateOfBirth});
 

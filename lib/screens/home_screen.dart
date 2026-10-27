@@ -14,12 +14,12 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(PersonalScreen.persona.name),
+            Text(PersonalScreen.persona.name), 
             Text(PersonalScreen.persona.email),
             Text(PersonalScreen.persona.dateOfBirth.toString()),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/personal_screen.dart');
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const PersonalScreen()));
               },
               child: const Text('Edit Profile'),
             ),
