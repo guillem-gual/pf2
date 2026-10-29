@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pf2/screens/personal_screen.dart';
+import 'package:pf2/models/persona.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

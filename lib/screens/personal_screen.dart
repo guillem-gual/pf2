@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:pf2/models/persona.dart';
 class PersonalScreen extends StatefulWidget {
   final Persona persona;
 
@@ -150,14 +150,4 @@ class _PersonalScreenState extends State<PersonalScreen> {
       )
     );
   }
-}
-
-class Persona {
-  String name;
-  String email;
-  String password;
-  DateTime dateOfBirth;
-
-  Persona({required this.name, required this.email, required this.password, required this.dateOfBirth});
-
 }
