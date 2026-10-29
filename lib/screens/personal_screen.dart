@@ -1,19 +1,60 @@
 import 'package:flutter/material.dart';
 
-class PersonalScreen extends StatelessWidget {
-  static var persona = Persona(name: 'Guillem Gual', email: 'guillemgual@example.com', dateOfBirth: DateTime(2000, 6, 6));
+class PersonalScreen extends StatefulWidget {
+  final Persona persona;
 
+  const PersonalScreen({super.key, required this.persona});
 
-  const PersonalScreen({super.key});
+  @override
+  State<PersonalScreen> createState() => _PersonalScreenState();
+}
+
+class _PersonalScreenState extends State<PersonalScreen> {
+  final _formKey = GlobalKey<FormState>();
+
+  late TextEditingController _nameController;
+  late TextEditingController _emailController;
+  late TextEditingController _passwordController;
+  late TextEditingController _dateOfBirthController;
+
+  DateTime? _dateOfBirth;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _nameController = TextEditingController(text: widget.persona.name);
+    _emailController = TextEditingController(text: widget.persona.email);
+    _passwordController = TextEditingController(text: widget.persona.password);
+
+    _dateOfBirth = widget.persona.dateOfBirth;
+    _dateOfBirthController = TextEditingController(text: _dateOfBirth != null
+          ?
+      "${_dateOfBirth!.day.toString().padLeft(2, '0')}/"
+              "${_dateOfBirth!.month.toString().padLeft(2, '0')}/"
+              "${_dateOfBirth!.year}"
+          : '',
+    );
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _dateOfBirthController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('${PersonalScreen.persona.name.split(" ")[1]} - Edit Profile'),
+        title: Text('${widget.persona.name.split(" ")[1]} - Edit Profile'),
         centerTitle: true,
       ),
       body: Form(
+        key: _formKey,
         child: Column(
           spacing: 10.0,
           children: [
@@ -21,6 +62,12 @@ class PersonalScreen extends StatelessWidget {
               decoration: const InputDecoration(
                 labelText: 'Name',
               ),
+            ),
+            TextFormField(
+              decoration: const InputDecoration(
+                labelText: 'Password',
+              ),
+              obscureText: true,
             ),
             TextFormField(
               decoration: const InputDecoration(
@@ -44,8 +91,9 @@ class PersonalScreen extends StatelessWidget {
 class Persona {
   String name;
   String email;
+  String password;
   DateTime dateOfBirth;
 
-  Persona({required this.name, required this.email, required this.dateOfBirth});
+  Persona({required this.name, required this.email, required this.password, required this.dateOfBirth});
 
 }
