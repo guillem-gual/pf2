@@ -46,6 +46,25 @@ class _PersonalScreenState extends State<PersonalScreen> {
     super.dispose();
   }
 
+  Future<void> _selectDate() async {
+    final DateTime? picked = await showDatePicker(
+      context: context, 
+      initialDate: _dateOfBirth ?? DateTime(2000), 
+      firstDate: DateTime(1900), 
+      lastDate: DateTime.now()
+    );
+
+    if (picked != null){
+      setState(() {
+        _dateOfBirth = picked;
+
+        _dateOfBirthController.text = "${picked.day.toString().padLeft(2, '0')}/"
+            "${picked.month.toString().padLeft(2, '0')}/"
+            "${picked.year}";
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
