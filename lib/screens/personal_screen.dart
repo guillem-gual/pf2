@@ -65,6 +65,17 @@ class _PersonalScreenState extends State<PersonalScreen> {
     }
   }
 
+  void _guardarITornar() {
+    if (_formKey.currentState!.validate()){
+      widget.persona.name = _nameController.text.trim();
+      widget.persona.email = _emailController.text.trim();
+      widget.persona.password = _passwordController.text.trim();
+      widget.persona.dateOfBirth = _dateOfBirth!;
+
+      Navigator.pop(context, widget.persona);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
