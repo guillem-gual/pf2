@@ -85,31 +85,65 @@ class _PersonalScreenState extends State<PersonalScreen> {
       ),
       body: Form(
         key: _formKey,
-        child: Column(
-          spacing: 10.0,
+        child: ListView(
           children: [
             TextFormField(
+              controller: _nameController,
+              textCapitalization: TextCapitalization.words,
               decoration: const InputDecoration(
                 labelText: 'Name',
               ),
+              validator: (value) {
+                if (value == null || value.trim().isEmpty) {
+                  return 'Camp obligatori';
+                }
+                return null;
+              },
             ),
             TextFormField(
+              controller: _passwordController,
               decoration: const InputDecoration(
                 labelText: 'Password',
               ),
               obscureText: true,
+              validator: (value) {
+                if (value == null || value.trim().isEmpty) {
+                  return 'Camp obligatori';
+                }
+                return null;
+              },
             ),
             TextFormField(
+              controller: _emailController,
               decoration: const InputDecoration(
                 labelText: 'Email',
               ),
               keyboardType: TextInputType.emailAddress,
+              validator: (value) {
+                if (value == null || value.trim().isEmpty) {
+                  return 'Camp obligatori';
+                }
+                if (!value.contains('@')) {
+                  return 'Email no vàlid';
+                }
+                return null;
+              },
             ),
             TextFormField(
+              controller: _dateOfBirthController,
               decoration: const InputDecoration(
                 labelText: 'Date of Birth',
+                suffixIcon: Icon(Icons.calendar_month),
               ),
               keyboardType: TextInputType.datetime,
+              readOnly: true,
+              onTap: _selectDate,
+              validator: (value) {
+                if (value == null || value.trim().isEmpty) {
+                  return 'Camp obligatori';
+                }
+                return null;
+              },
             ),
           ],
         ),
