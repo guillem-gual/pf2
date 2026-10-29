@@ -6,6 +6,40 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  Persona persona = Persona(
+    name: 'Guillem Gual',
+    email: 'guillemgual@example.com',
+    password: 'contraseña123',
+    dateOfBirth: DateTime(2006, 12, 26),
+  );
+}
+
+Future<void> _editarPerfil() async {
+  final Persona? updatedPersona = await Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => 
+      PersonalScreen(persona: persona),
+    )
+  );
+
+  if (updatedPersona != null) {
+    setState(() {
+      persona = updatedPersona;
+    });
+  }
+
+  String _formatDate(DateTime date) {
+    return "${date.day.toString().padLeft(2, '0')}/"
+           "${date.month.toString().padLeft(2, '0')}/"
+           "${date.year}";
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -18,9 +52,9 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(PersonalScreen.persona.name), 
-                Text(PersonalScreen.persona.email),
-                Text(PersonalScreen.persona.dateOfBirth.toString()),
+                Text(persona.name), 
+                Text(persona.email),
+                Text(_formatDate(persona.dateOfBirth)),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => const PersonalScreen()));
