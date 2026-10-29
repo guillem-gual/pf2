@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pf2/screens/personal_screen.dart';
 import 'package:pf2/models/persona.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
@@ -16,27 +16,26 @@ class _HomeScreenState extends State<HomeScreen> {
     password: 'contraseña123',
     dateOfBirth: DateTime(2006, 12, 26),
   );
-}
 
-Future<void> _editarPerfil() async {
-  final Persona? updatedPersona = await Navigator.push(
-    context,
-    MaterialPageRoute(
-      builder: (context) => 
-      PersonalScreen(persona: persona),
-    )
-  );
+  Future<void> _editarPerfil() async {
+    final Persona? updatedPersona = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => PersonalScreen(persona: persona),
+      ),
+    );
 
-  if (updatedPersona != null) {
-    setState(() {
-      persona = updatedPersona;
-    });
+    if (updatedPersona != null) {
+      setState(() {
+        persona = updatedPersona;
+      });
+    }
   }
 
   String _formatDate(DateTime date) {
-    return "${date.day.toString().padLeft(2, '0')}/"
-           "${date.month.toString().padLeft(2, '0')}/"
-           "${date.year}";
+    return '${date.day.toString().padLeft(2, '0')}/'
+        '${date.month.toString().padLeft(2, '0')}/'
+        '${date.year}';
   }
 
   @override
@@ -50,15 +49,12 @@ Future<void> _editarPerfil() async {
         children: [
           Center(
             child: Column(
-              mainAxisSize: MainAxisSize.min,
               children: [
                 Text(persona.name), 
                 Text(persona.email),
                 Text(_formatDate(persona.dateOfBirth)),
                 ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const PersonalScreen()));
-                  },
+                  onPressed: _editarPerfil,
                   child: const Text('Edit Profile'),
                 ),
               ],
